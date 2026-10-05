@@ -300,6 +300,18 @@ a {
 
 .hero-scroll .material-symbols-outlined {
 	font-size: 1.75rem;
+	animation: hero-arrow-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes hero-arrow-pulse {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.2);
+	}
 }
 
 .hero-kings-bacon {
@@ -1104,6 +1116,10 @@ a {
 	*::after {
 		scroll-behavior: auto;
 		transition-duration: 0.01ms !important;
+	}
+
+	.hero-scroll .material-symbols-outlined {
+		animation: none;
 	}
 }
 
