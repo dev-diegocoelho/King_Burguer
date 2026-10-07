@@ -435,6 +435,39 @@ a {
 	margin: 0 auto;
 }
 
+.double-promo__offer,
+.promo-king-double__selector {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1), transform 1400ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 1400ms;
+}
+
+.double-promo__offer {
+	transform: translateY(2rem);
+}
+
+.promo-king-double__selector {
+	transform: translateX(-2rem);
+}
+
+.double-promo__offer.is-visible,
+.promo-king-double__selector.is-visible {
+	visibility: visible;
+	opacity: 1;
+	transform: none;
+	transition-delay: 0s;
+}
+
+.promo-king-double__selector.is-visible:hover,
+.promo-king-double__selector.is-visible:focus-visible {
+	transform: scale(1.02);
+}
+
+.promo-king-double__selector:focus-visible {
+	outline: 3px solid var(--color-brown);
+	outline-offset: 4px;
+}
+
 .double-promo__offer {
 	font-family: var(--font-display);
 	text-transform: uppercase;
@@ -555,6 +588,21 @@ a {
 	object-fit: contain;
 }
 
+@media (prefers-reduced-motion: reduce) {
+	.double-promo__offer,
+	.promo-king-double__selector {
+		visibility: visible;
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+	.promo-king-double__selector.is-visible:hover,
+	.promo-king-double__selector.is-visible:focus-visible {
+		transform: none;
+	}
+}
+
 .ingredients-showcase {
 	padding: 4rem 1.5rem;
 	background-color: var(--color-kings-bacon-bg);
@@ -609,6 +657,65 @@ a {
 	box-shadow: 0 0.75rem 1.5rem rgb(80 35 20 / 16%);
 	color: var(--color-white);
 	text-align: center;
+}
+
+.ingredients-showcase.is-animating .ingredients-showcase__card {
+	opacity: 0;
+	transform: translateX(-2.5rem);
+}
+
+.ingredients-showcase.is-animating .ingredients-showcase__card.is-visible {
+	animation: ingredient-card-bounce 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ingredients-showcase.is-animating .ingredients-showcase__card:nth-child(2).is-visible {
+	animation-delay: 100ms;
+}
+
+.ingredients-showcase.is-animating .ingredients-showcase__card:nth-child(3).is-visible {
+	animation-delay: 200ms;
+}
+
+.ingredients-showcase.is-animating .ingredients-showcase__card:nth-child(4).is-visible {
+	animation-delay: 300ms;
+}
+
+.ingredients-showcase.is-animating .ingredients-showcase__card:nth-child(5).is-visible {
+	animation-delay: 400ms;
+}
+
+.ingredients-showcase.is-animating .ingredients-showcase__card:nth-child(6).is-visible {
+	animation-delay: 500ms;
+}
+
+@keyframes ingredient-card-bounce {
+	0% {
+		opacity: 0;
+		transform: translateX(-2.5rem);
+	}
+
+	65% {
+		opacity: 1;
+		transform: translateX(0.35rem) translateY(-0.35rem);
+	}
+
+	82% {
+		transform: translateX(-0.15rem) translateY(0.15rem);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0) translateY(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ingredients-showcase.is-animating .ingredients-showcase__card,
+	.ingredients-showcase.is-animating .ingredients-showcase__card.is-visible {
+		animation: none;
+		opacity: 1;
+		transform: none;
+	}
 }
 
 .ingredients-showcase__card--meat {
@@ -707,12 +814,36 @@ a {
 	line-height: 1.35;
 }
 
+.premium-ingredients.is-animating .premium-ingredients__title,
+.premium-ingredients.is-animating .premium-ingredients__subtitle {
+	opacity: 0;
+	transform: translateY(1.5rem);
+}
+
+.premium-ingredients.is-animating .premium-ingredients__title.is-visible,
+.premium-ingredients.is-animating .premium-ingredients__subtitle.is-visible {
+	animation: premium-ingredients-rise 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.premium-ingredients.is-animating .premium-ingredients__subtitle.is-visible {
+	animation-delay: 120ms;
+}
+
 .premium-ingredients__content {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	align-items: center;
 	gap: 2rem;
 	margin-top: 3rem;
+}
+
+.premium-ingredients.is-animating .premium-ingredients__content {
+	opacity: 0;
+	transform: translateX(2.5rem);
+}
+
+.premium-ingredients.is-animating .premium-ingredients__content.is-visible {
+	animation: premium-ingredients-slide-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
 }
 
 .premium-ingredients__image {
@@ -722,6 +853,60 @@ a {
 	justify-self: center;
 	border-radius: 1.5rem;
 	object-fit: cover;
+}
+
+.premium-ingredients.is-animating .premium-ingredients__image {
+	opacity: 0;
+	transform: scale(0.72);
+}
+
+.premium-ingredients.is-animating .premium-ingredients__image.is-visible {
+	animation: premium-ingredients-image-pop 1000ms cubic-bezier(0.22, 1, 0.36, 1) 260ms both;
+}
+
+@keyframes premium-ingredients-rise {
+	from {
+		opacity: 0;
+		transform: translateY(1.5rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes premium-ingredients-slide-in {
+	from {
+		opacity: 0;
+		transform: translateX(2.5rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes premium-ingredients-image-pop {
+	0% {
+		opacity: 0;
+		transform: scale(0.72);
+	}
+
+	65% {
+		opacity: 1;
+		transform: scale(1.08);
+	}
+
+	82% {
+		transform: scale(0.97);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 .premium-ingredients__details h3 {
@@ -1242,6 +1427,19 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.premium-ingredients.is-animating .premium-ingredients__title,
+	.premium-ingredients.is-animating .premium-ingredients__subtitle,
+	.premium-ingredients.is-animating .premium-ingredients__content,
+	.premium-ingredients.is-animating .premium-ingredients__image,
+	.premium-ingredients.is-animating .premium-ingredients__title.is-visible,
+	.premium-ingredients.is-animating .premium-ingredients__subtitle.is-visible,
+	.premium-ingredients.is-animating .premium-ingredients__content.is-visible,
+	.premium-ingredients.is-animating .premium-ingredients__image.is-visible {
+		animation: none;
+		opacity: 1;
+		transform: none;
+	}
+
 	*,
 	*::before,
 	*::after {
@@ -1456,6 +1654,53 @@ a {
 	color: var(--color-white);
 }
 
+.app-download.is-animating {
+	opacity: 0;
+	transition: opacity 700ms ease;
+}
+
+.app-download.is-animating .app-download__content,
+.app-download.is-animating .app-download__visual {
+	opacity: 0;
+	transition: opacity 850ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.app-download.is-animating .app-download__content {
+	transform: translateX(2.5rem);
+	transition-delay: 120ms;
+}
+
+.app-download.is-animating .app-download__visual {
+	transform: translateX(-2.5rem);
+}
+
+.app-download.is-animating.is-visible,
+.app-download.is-animating.is-visible .app-download__content,
+.app-download.is-animating.is-visible .app-download__visual {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.app-download.is-animating.is-visible .app-download__image {
+	animation: app-download-float 4s ease-in-out 850ms infinite;
+}
+
+.app-download.is-animating.is-visible .app-download__store {
+	animation: app-download-store-pulse 3.2s ease-in-out infinite;
+}
+
+.app-download.is-animating.is-visible .app-download__store:nth-child(2) {
+	animation-delay: 350ms;
+}
+
+.app-download.is-animating.is-visible .app-download__store > .material-symbols-outlined {
+	animation: app-download-icon-float 2.4s ease-in-out infinite;
+}
+
+.app-download.is-animating.is-visible .app-download__store:nth-child(2) > .material-symbols-outlined {
+	animation-delay: 250ms;
+}
+
 .app-download__container {
 	display: grid;
 	width: min(100%, 72rem);
@@ -1467,6 +1712,13 @@ a {
 
 .app-download__content {
 	text-align: center;
+}
+
+.app-download__visual {
+	display: grid;
+	width: 100%;
+	place-items: center;
+	margin: 0;
 }
 
 .app-download__eyebrow {
@@ -1500,6 +1752,7 @@ a {
 }
 
 .app-download__store {
+	position: relative;
 	display: inline-flex;
 	min-width: 10.5rem;
 	min-height: 3.75rem;
@@ -1511,7 +1764,31 @@ a {
 	border-radius: 0.375rem;
 	background-color: var(--color-black);
 	color: var(--color-white);
+	overflow: hidden;
 	text-decoration: none;
+}
+
+.app-download__store::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20rem;
+	height: 20rem;
+	border-radius: 50%;
+	background-color: rgb(255 255 255 / 28%);
+	content: "";
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0);
+}
+
+.app-download__store.is-rippling::after {
+	animation: app-download-ripple 650ms ease-out forwards;
+}
+
+.app-download__store > span {
+	position: relative;
+	z-index: 1;
 }
 
 .app-download__store:hover {
@@ -1547,6 +1824,51 @@ a {
 	justify-self: center;
 }
 
+@keyframes app-download-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-0.75rem);
+	}
+}
+
+@keyframes app-download-icon-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-0.25rem);
+	}
+}
+
+@keyframes app-download-store-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.88;
+	}
+}
+
+@keyframes app-download-ripple {
+	from {
+		opacity: 0.35;
+		transform: translate(-50%, -50%) scale(0);
+	}
+
+	to {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(1);
+	}
+}
+
 @media (min-width: 48rem) {
 	.ingredients-showcase {
 		padding-block: 5rem;
@@ -1575,7 +1897,14 @@ a {
 		gap: 4rem;
 	}
 
+	.app-download__visual {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
 	.app-download__content {
+		grid-column: 1;
+		grid-row: 1;
 		text-align: left;
 	}
 
@@ -1589,6 +1918,23 @@ a {
 
 	.app-download__stores {
 		justify-content: flex-start;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.app-download.is-animating,
+	.app-download.is-animating .app-download__content,
+	.app-download.is-animating .app-download__visual {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+	.app-download.is-animating .app-download__image,
+	.app-download.is-animating .app-download__store,
+	.app-download.is-animating .app-download__store > .material-symbols-outlined,
+	.app-download__store.is-rippling::after {
+		animation: none;
 	}
 }
 

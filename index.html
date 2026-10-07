@@ -10,6 +10,19 @@
     <script src="js/main.js" defer></script>
     <script src="js/menu.js" defer></script>
     <script src="js/hero.js" defer></script>
+    <script src="js/ingredients-animation.js" defer></script>
+    <script src="js/double-promo-animation.js" defer></script>
+    <script src="js/app-download-animation.js" defer></script>
+    <noscript>
+        <style>
+            .double-promo__offer.is-pending,
+            .promo-king-double__selector.is-pending {
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+            }
+        </style>
+    </noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -86,14 +99,14 @@
 
         <section class="double-promo" id="promocoes" aria-labelledby="double-promo-title">
             <div class="double-promo__content">
-                <div class="double-promo__offer">
+                <div class="double-promo__offer is-pending">
                     <h2 class="double-promo__heading" id="double-promo-title">King em Dobro</h2>
                     <p class="double-promo__quantity"><span class="double-promo__number">2</span><span class="double-promo__burgers">Burgers</span><span class="double-promo__prefix">a partir de</span></p>
                     <p class="double-promo__price"><span class="double-promo__currency">R$</span><span class="double-promo__amount">25</span><span class="double-promo__cents">,90</span></p>
                     <p class="double-promo__disclaimer">Os preços promocionais são válidos por tempo indeterminado. Confira as unidades participantes. Imagens meramente ilustrativas.</p>
                 </div>
 
-                <div class="double-promo__choices" aria-label="Opções da promoção King em Dobro">
+                <div class="double-promo__choices promo-king-double__selector is-pending" role="group" tabindex="0" aria-label="Opções da promoção King em Dobro">
                     <h3>Escolha entre:</h3>
                     <ul class="double-promo__products">
                         <li class="double-promo__product">
@@ -158,8 +171,8 @@
         <section class="premium-ingredients" aria-labelledby="premium-ingredients-title">
             <div class="premium-ingredients__container">
                 <header class="premium-ingredients__header">
-                    <h2 id="premium-ingredients-title">HMMMM</h2>
-                    <p>Saboroso em cada detalhe</p>
+                    <h2 class="premium-ingredients__title" id="premium-ingredients-title">HMMMM</h2>
+                    <p class="premium-ingredients__subtitle">Saboroso em cada detalhe</p>
                 </header>
 
                 <div class="premium-ingredients__content">
@@ -356,7 +369,9 @@
                         </a>
                     </div>
                 </div>
-                <img class="app-download__image" src="public/images/app.png" alt="Tela do app Clube KB em um celular, com atalhos para pedidos, cupons e unidades">
+                <figure class="app-download__visual">
+                    <img class="app-download__image" src="public/images/app.png" alt="Tela do app Clube KB em um celular, com atalhos para pedidos, cupons e unidades">
+                </figure>
             </div>
         </section>
     </main>
