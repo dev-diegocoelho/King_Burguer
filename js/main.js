@@ -35,9 +35,9 @@ const carouselPrevious = document.querySelector('[data-carousel-previous]');
 const carouselNext = document.querySelector('[data-carousel-next]');
 const carouselSlides = [
 	{
-		name: 'Leonardo',
+		name: 'Tartarugas Animação',
 		source: 'public/images/kids-ninja-leonardo-56586a.gif',
-		alt: 'Brinquedo Leonardo das Tartarugas Ninja do King Jr.'
+		alt: 'Brinquedo das Tartarugas Ninja do King Jr.'
 	},
 	{
 		name: 'Samurai',
